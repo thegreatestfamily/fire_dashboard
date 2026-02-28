@@ -2,12 +2,18 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
 import { Mail, Lock, LogIn, Github, Globe, CircleAlert } from "@/components/auth/AuthIcons";
 
+const BACKEND_URL = process.env.NEXT_PUBLIC_DASHBOARD_BACKEND_URL || "http://localhost:5000";
+
 export default function LoginPage() {
+    const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -18,8 +24,33 @@ export default function LoginPage() {
             return;
         }
 
-        // Simulate login
-        console.log("Login attempt:", { email, password });
+        setIsLoading(true);
+
+        try {
+            const res = await fetch(`${BACKEND_URL}/api/auth/login`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                // Save session & user
+                localStorage.setItem("dashboard_session", JSON.stringify(data.session));
+                localStorage.setItem("dashboard_user", JSON.stringify(data.user));
+
+                // Redirect to dashboard
+                router.push("/");
+            } else {
+                setError(data.message || "Invalid credentials");
+            }
+        } catch (err) {
+            console.error("Login error:", err);
+            setError("Could not connect to the server.");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -90,10 +121,15 @@ export default function LoginPage() {
 
                         <button
                             type="submit"
-                            className="flex w-full items-center justify-center rounded-xl bg-gradient-to-br from-[#FF6B35] to-[#FF8C5A] py-4 text-base font-semibold text-white transition-all hover:translate-y-[-2px] hover:shadow-[0_10px_30px_rgba(255,107,53,0.3)] active:translate-y-0"
+                            disabled={isLoading}
+                            className="flex w-full items-center justify-center rounded-xl bg-gradient-to-br from-[#FF6B35] to-[#FF8C5A] py-4 text-base font-semibold text-white transition-all hover:translate-y-[-2px] hover:shadow-[0_10px_30px_rgba(255,107,53,0.3)] active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            <LogIn size={20} className="mr-2" />
-                            Sign In
+                            {isLoading ? (
+                                <Loader2 size={20} className="mr-2 animate-spin" />
+                            ) : (
+                                <LogIn size={20} className="mr-2" />
+                            )}
+                            {isLoading ? "Signing In..." : "Sign In"}
                         </button>
 
                         <div className="flex items-center gap-4">

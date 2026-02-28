@@ -2,9 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
 import { User, Mail, Lock, Building2, UserPlus, Github, Globe, CircleAlert, CircleCheck } from "@/components/auth/AuthIcons";
 
+const BACKEND_URL = process.env.NEXT_PUBLIC_DASHBOARD_BACKEND_URL || "http://localhost:5000";
+
 export default function RegisterPage() {
+    const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -55,8 +61,37 @@ export default function RegisterPage() {
             return;
         }
 
-        console.log("Registration attempt:", formData);
-        setSuccess(true);
+        setIsLoading(true);
+
+        try {
+            const res = await fetch(`${BACKEND_URL}/api/auth/register`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email,
+                    password,
+                    firstName,
+                    lastName,
+                    company
+                })
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                setSuccess(true);
+                setTimeout(() => {
+                    router.push("/login");
+                }, 2000);
+            } else {
+                setError(data.message || "Registration failed");
+            }
+        } catch (err) {
+            console.error("Registration error:", err);
+            setError("Could not connect to the server. Please try again.");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -228,10 +263,15 @@ export default function RegisterPage() {
 
                         <button
                             type="submit"
-                            className="flex w-full items-center justify-center rounded-xl bg-gradient-to-br from-[#FF6B35] to-[#FF8C5A] py-4 text-base font-semibold text-white transition-all hover:translate-y-[-2px] hover:shadow-[0_10px_30px_rgba(255,107,53,0.3)] active:translate-y-0"
+                            disabled={isLoading}
+                            className="flex w-full items-center justify-center rounded-xl bg-gradient-to-br from-[#FF6B35] to-[#FF8C5A] py-4 text-base font-semibold text-white transition-all hover:translate-y-[-2px] hover:shadow-[0_10px_30px_rgba(255,107,53,0.3)] active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            <UserPlus size={20} className="mr-2" />
-                            Create Account
+                            {isLoading ? (
+                                <Loader2 size={20} className="mr-2 animate-spin" />
+                            ) : (
+                                <UserPlus size={20} className="mr-2" />
+                            )}
+                            {isLoading ? "Creating Account..." : "Create Account"}
                         </button>
 
                         <div className="flex items-center gap-4">
