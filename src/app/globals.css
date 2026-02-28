@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme {
+  --color-fire-primary: #FF6B35;
+  --color-fire-primary-light: #FF8C5A;
+  --color-fire-dark: #0A0A0A;
+  --color-fire-surface: #1A1A1A;
+  --color-fire-glass: rgba(20, 20, 20, 0.6);
+  --color-fire-text-secondary: #888888;
+  --color-fire-border: rgba(255, 107, 53, 0.1);
+  --color-fire-hover: rgba(255, 107, 53, 0.2);
+
+  --font-inter: "Inter", sans-serif;
+  --font-mono: "Monospace";
+
+  --radius-card: 24px;
+  --radius-button: 40px;
+}
+
+:root {
+  --background: #0A0A0A;
+  --foreground: #FFFFFF;
+  --fire-primary: #FF6B35;
+  --fire-secondary: #FF8C5A;
+}
+
+body {
+  background-color: #0A0A0A;
+  color: var(--foreground);
+  font-family: var(--font-inter);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography Utilities */
+.text-h1 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.text-h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.text-stat {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.text-body {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.text-label {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.text-api-key {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.text-small {
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.glass {
+  background: var(--color-fire-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-fire-border);
+  border-radius: var(--radius-card);
+}
+
+.fire-gradient {
+  background: linear-gradient(135deg, var(--fire-primary), var(--fire-secondary));
+}
+
+.fire-text-gradient {
+  background: linear-gradient(135deg, var(--fire-primary), var(--fire-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes rotate-ani {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-rotate-slow {
+  animation: rotate-ani 25s linear infinite;
+}
