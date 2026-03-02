@@ -24,8 +24,8 @@ export default function Home() {
     const userStr = localStorage.getItem("dashboard_user");
 
     if (!sessionStr || !userStr) {
-      // Redirect to login if not authenticated
-      router.replace("/login");
+      // Redirect to register if not authenticated
+      router.replace("/register");
       return;
     }
 

@@ -34,12 +34,12 @@ export default function RegisterPage() {
         setStrength(s);
     }, [formData.password]);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError("");
         setSuccess(false);
 
-        const { firstName, lastName, email, password, confirmPassword, terms } = formData;
+        const { firstName, lastName, email, company, password, confirmPassword, terms } = formData;
 
         if (!firstName || !lastName || !email || !password || !confirmPassword) {
             setError("Please fill in all required fields");
