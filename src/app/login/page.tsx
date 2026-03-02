@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Loader2, Eye, EyeOff } from "lucide-react";
 import { Mail, Lock, LogIn, Github, Globe, CircleAlert } from "@/components/auth/AuthIcons";
+import FireLogo from "@/components/ui/FireLogo";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_DASHBOARD_BACKEND_URL || "http://localhost:5000";
 
@@ -65,8 +66,8 @@ export default function LoginPage() {
             <div className="relative z-10 w-full max-w-[440px] px-8">
                 {/* Logo */}
                 <div className="mb-8 text-center">
-                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#FF6B35] to-[#FF8C5A] text-3xl font-bold shadow-[0_10px_30px_rgba(255,107,53,0.3)]">
-                        🔥
+                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#FF6B35]/20 to-[#FF8C5A]/10 border border-[#FF6B35]/30 shadow-[0_10px_30px_rgba(255,107,53,0.3)]">
+                        <FireLogo size={36} animate />
                     </div>
                     <h1 className="mb-2 bg-gradient-to-br from-[#FF6B35] to-[#FF8C5A] bg-clip-text text-2xl font-bold text-transparent">
                         Fire Studio

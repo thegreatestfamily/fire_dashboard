@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import FireLogo from "@/components/ui/FireLogo";
 
 function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -39,8 +40,8 @@ export const Sidebar = () => {
     return (
         <aside className="fixed left-0 top-0 z-[100] flex h-screen w-[280px] flex-col border-r border-fire-border bg-fire-dark p-8 max-md:hidden">
             <div className="mb-8 flex items-center gap-3 border-b border-fire-border pb-6">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-fire-primary to-fire-secondary text-2xl font-bold text-white">
-                    🔥
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-fire-primary to-fire-secondary text-2xl font-bold text-white shadow-lg overflow-hidden border border-white/10">
+                    <FireLogo size={22} className="drop-shadow-sm" />
                 </div>
                 <div>
                     <h2 className="fire-text-gradient text-h2 font-bold">

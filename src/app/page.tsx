@@ -12,6 +12,7 @@ import { ActivityList } from "@/components/dashboard/ActivityList";
 import { BillingCard } from "@/components/dashboard/BillingCard";
 import { UsageCard } from "@/components/dashboard/BrandingPreview";
 import { BarChart3, Key, Rocket, Zap, Plus, FileCode, CreditCard, Headset } from "lucide-react";
+import FireLogo from "@/components/ui/FireLogo";
 
 export default function Home() {
   const router = useRouter();
@@ -43,7 +44,10 @@ export default function Home() {
     return (
       <div className="flex min-h-screen bg-[#0A0A0A] items-center justify-center text-white">
         <div className="flex flex-col items-center gap-4 animate-pulse">
-          <div className="text-fire-primary text-3xl font-bold tracking-tighter">🔥 FIRE</div>
+          <div className="text-fire-primary text-3xl font-bold tracking-tighter flex items-center gap-2">
+            <FireLogo size={32} animate />
+            FIRE
+          </div>
           <div className="text-gray-500 text-xs uppercase tracking-widest font-mono border border-fire-border px-3 py-1 rounded-full">Securing Connection...</div>
         </div>
       </div>
