@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
+import { Loader2, Eye, EyeOff } from "lucide-react";
 import { User, Mail, Lock, Building2, UserPlus, Github, Globe, CircleAlert, CircleCheck } from "@/components/auth/AuthIcons";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_DASHBOARD_BACKEND_URL || "http://localhost:5000";
@@ -23,6 +23,8 @@ export default function RegisterPage() {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
     const [strength, setStrength] = useState(0);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     useEffect(() => {
         let s = 0;
@@ -208,14 +210,21 @@ export default function RegisterPage() {
                             <div className="relative flex items-center">
                                 <Lock size={16} className="absolute left-4 text-[#FF6B35]" />
                                 <input
-                                    type="password"
+                                    type={showPassword ? "text" : "password"}
                                     name="password"
                                     value={formData.password}
                                     onChange={handleChange}
-                                    className="w-full rounded-xl border border-[#FF6B35]/20 bg-[#1A1A1A] py-3.5 pl-11 pr-4 text-sm text-white transition-all placeholder:text-gray-700 focus:border-[#FF6B35] focus:outline-none focus:ring-4 focus:ring-[#FF6B35]/10"
+                                    className="w-full rounded-xl border border-[#FF6B35]/20 bg-[#1A1A1A] py-3.5 pl-11 pr-11 text-sm text-white transition-all placeholder:text-gray-700 focus:border-[#FF6B35] focus:outline-none focus:ring-4 focus:ring-[#FF6B35]/10"
                                     placeholder="••••••••"
                                     required
                                 />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute right-4 text-gray-500 hover:text-[#FF6B35] transition-colors"
+                                >
+                                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                                </button>
                             </div>
                             {/* Strength Meter */}
                             <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-white/5">
@@ -235,14 +244,21 @@ export default function RegisterPage() {
                             <div className="relative flex items-center">
                                 <Lock size={16} className="absolute left-4 text-[#FF6B35]" />
                                 <input
-                                    type="password"
+                                    type={showConfirmPassword ? "text" : "password"}
                                     name="confirmPassword"
                                     value={formData.confirmPassword}
                                     onChange={handleChange}
-                                    className="w-full rounded-xl border border-[#FF6B35]/20 bg-[#1A1A1A] py-3.5 pl-11 pr-4 text-sm text-white transition-all placeholder:text-gray-700 focus:border-[#FF6B35] focus:outline-none focus:ring-4 focus:ring-[#FF6B35]/10"
+                                    className="w-full rounded-xl border border-[#FF6B35]/20 bg-[#1A1A1A] py-3.5 pl-11 pr-11 text-sm text-white transition-all placeholder:text-gray-700 focus:border-[#FF6B35] focus:outline-none focus:ring-4 focus:ring-[#FF6B35]/10"
                                     placeholder="••••••••"
                                     required
                                 />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                    className="absolute right-4 text-gray-500 hover:text-[#FF6B35] transition-colors"
+                                >
+                                    {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                                </button>
                             </div>
                         </div>
 
