@@ -150,7 +150,7 @@ export default function RegisterPage() {
                                         value={formData.firstName}
                                         onChange={handleChange}
                                         className="w-full rounded-xl border border-[#FF6B35]/20 bg-[#1A1A1A] py-3.5 pl-11 pr-4 text-sm text-white transition-all placeholder:text-gray-700 focus:border-[#FF6B35] focus:outline-none focus:ring-4 focus:ring-[#FF6B35]/10"
-                                        placeholder="John"
+                                        placeholder="Anene"
                                         required
                                     />
                                 </div>
@@ -165,7 +165,7 @@ export default function RegisterPage() {
                                         value={formData.lastName}
                                         onChange={handleChange}
                                         className="w-full rounded-xl border border-[#FF6B35]/20 bg-[#1A1A1A] py-3.5 pl-11 pr-4 text-sm text-white transition-all placeholder:text-gray-700 focus:border-[#FF6B35] focus:outline-none focus:ring-4 focus:ring-[#FF6B35]/10"
-                                        placeholder="Developer"
+                                        placeholder="Mwami"
                                         required
                                     />
                                 </div>
@@ -197,7 +197,7 @@ export default function RegisterPage() {
                                     value={formData.email}
                                     onChange={handleChange}
                                     className="w-full rounded-xl border border-[#FF6B35]/20 bg-[#1A1A1A] py-3.5 pl-11 pr-4 text-sm text-white transition-all placeholder:text-gray-700 focus:border-[#FF6B35] focus:outline-none focus:ring-4 focus:ring-[#FF6B35]/10"
-                                    placeholder="john@company.com"
+                                    placeholder="anene@firestudio.com"
                                     required
                                 />
                             </div>

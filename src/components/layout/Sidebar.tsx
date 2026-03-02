@@ -81,11 +81,11 @@ export const Sidebar = () => {
 
             <div className="mt-5 flex items-center gap-3 rounded-2xl bg-white/5 p-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-fire-primary to-fire-secondary text-lg font-bold text-white">
-                    JD
+                    AM
                 </div>
                 <div className="flex-1 overflow-hidden">
-                    <h4 className="truncate text-sm font-semibold">John Developer</h4>
-                    <p className="truncate text-xs text-fire-text-secondary">john@devworks.io</p>
+                    <h4 className="truncate text-sm font-semibold">Anene Mwami</h4>
+                    <p className="truncate text-xs text-fire-text-secondary">anene@firestudio.com</p>
                 </div>
                 <ChevronDown size={12} className="text-[#888]" />
             </div>
