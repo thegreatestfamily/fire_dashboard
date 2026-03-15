@@ -82,10 +82,16 @@ export default function RegisterPage() {
             const data = await res.json();
 
             if (res.ok) {
+                // Save session & user (for auto-login)
+                if (data.session) {
+                    localStorage.setItem("dashboard_session", JSON.stringify(data.session));
+                    localStorage.setItem("dashboard_user", JSON.stringify(data.user));
+                }
+
                 setSuccess(true);
                 setTimeout(() => {
-                    router.push("/login");
-                }, 2000);
+                    router.push("/");
+                }, 1500);
             } else {
                 setError(data.message || "Registration failed");
             }
