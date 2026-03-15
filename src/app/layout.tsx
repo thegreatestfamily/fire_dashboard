@@ -10,6 +10,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Fire Studio Dashboard",
   description: "Premium dashboard for Fire Studio",
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({
